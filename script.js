@@ -9,7 +9,25 @@ function convertToRoman(num) {
       6:['I', 1]
     };
 
-  //your code here
+  let roman = '';
+  let i = 0;
+
+  while (num > 0) {
+    if (num >= obj[i][1]) {
+      roman += obj[i][0];
+      num -= obj[i][1];
+    } else if (i % 2 === 0 && i < 6 && num >= obj[i + 2][1] - obj[i][1]) {
+      roman += obj[i + 2][0] + obj[i][0];
+      num -= obj[i + 2][1] - obj[i][1];
+    } else if (i % 2 === 1 && i < 6 && num >= obj[i + 1][1] - obj[i][1]) {
+      roman += obj[i + 1][0] + obj[i][0];
+      num -= obj[i + 1][1] - obj[i][1];
+    } else {
+      i++;
+    }
+  }
+
+  return roman;
 
 }
 // You can test your code by running the above function and printing it to console by pressing the run button at the top. To run it with input 36, uncomment the following line
